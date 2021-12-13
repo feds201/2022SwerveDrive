@@ -44,6 +44,7 @@ public class Robot extends TimedRobot {
 		{
 			NetworkTableInstance.getDefault().getTable("swervealignment")
 				.loadEntries(Filesystem.getOperatingDirectory() + "/swerve.ini");
+			System.out.println("Successfully loaded swerve drive alignment");
 		}
 		catch (PersistentException e)
 		{
@@ -72,7 +73,7 @@ public class Robot extends TimedRobot {
 									0.4, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
 		double maxThrottle = 1;
 		ISwerveModule frontLeft = new SDSMk4Module(21, 22, 1, table.getEntry("index0").getDouble(0), pidConfig, maxThrottle);
-		ISwerveModule frontRight = new SDSMk4Module(11, 12, 3,table.getEntry("index1").getDouble(0), pidConfig, maxThrottle);
+		ISwerveModule frontRight = new SDSMk4Module(11, 12, 3, table.getEntry("index1").getDouble(0), pidConfig, maxThrottle);
 		ISwerveModule backLeft = new SDSMk4Module(31, 32, 4, table.getEntry("index2").getDouble(0), pidConfig, maxThrottle);
 		ISwerveModule backRight = new SDSMk4Module(41, 42, 2, table.getEntry("index3").getDouble(0), pidConfig, maxThrottle);
 		((SDSMk4Module)frontLeft).setDebug(true);
@@ -102,12 +103,13 @@ public class Robot extends TimedRobot {
 				double[] alignments = swerveDrive.getAlignments();
 				try
 				{
-					NetworkTable table = NetworkTableInstance.getDefault().getTable("swerve");
+					NetworkTable table = NetworkTableInstance.getDefault().getTable("swervealignment");
 					table.getEntry("index0").setDouble(alignments[0]);
 					table.getEntry("index1").setDouble(alignments[1]);
 					table.getEntry("index2").setDouble(alignments[2]);
 					table.getEntry("index3").setDouble(alignments[3]);
 					table.saveEntries(Filesystem.getOperatingDirectory() + "/swerve.ini");
+					System.out.println("Successfully saved swerve drive alignment");
 				}
 				catch (PersistentException e)
 				{

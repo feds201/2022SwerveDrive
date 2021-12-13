@@ -7,7 +7,7 @@ public class DefaultDriverProfile implements IDriverProfile {
     public static final double DEADZONE = 0.05;
     
     public double[] getInputs(Joystick joystick) {
-        double forward = joystick.getRawAxis(1);
+        double forward = -joystick.getRawAxis(1);
         double strafe = joystick.getRawAxis(0);
         double rotate = joystick.getRawAxis(4);
 
