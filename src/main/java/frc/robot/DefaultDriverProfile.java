@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class DefaultDriverProfile implements IDriverProfile {
 
-    public static final double DEADZONE = 0.05;
+    public static final double DEADZONE = 0.025;
     
     public double[] getInputs(Joystick joystick) {
         double forward = -joystick.getRawAxis(1);
@@ -15,7 +15,7 @@ public class DefaultDriverProfile implements IDriverProfile {
         linearAngle = (linearAngle % 1 + 1) % 1;
         double linearSpeed = Math.sqrt(forward * forward + strafe * strafe);
 
-        return new double[] { linearAngle, deadzone(linearSpeed, DEADZONE), deadzone(rotate, DEADZONE) };
+        return new double[] { linearAngle, Math.pow(deadzone(linearSpeed, DEADZONE), 2), deadzone(rotate, DEADZONE) };
     }
 
 	private static double deadzone(double input, double threshold) {
