@@ -73,8 +73,8 @@ public class Robot extends TimedRobot {
 									0.4, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
 		double maxThrottle = 1;
 		ISwerveModule frontLeft = new SDSMk4Module(21, 22, 1, table.getEntry("index0").getDouble(0), pidConfig, maxThrottle);
-		ISwerveModule frontRight = new SDSMk4Module(11, 12, 3, table.getEntry("index1").getDouble(0), pidConfig, maxThrottle);
-		ISwerveModule backLeft = new SDSMk4Module(31, 32, 4, table.getEntry("index2").getDouble(0), pidConfig, maxThrottle);
+		ISwerveModule frontRight = new SDSMk4Module(11, 12, 4, table.getEntry("index1").getDouble(0), pidConfig, maxThrottle);
+		ISwerveModule backLeft = new SDSMk4Module(31, 32, 3, table.getEntry("index2").getDouble(0), pidConfig, maxThrottle);
 		ISwerveModule backRight = new SDSMk4Module(41, 42, 2, table.getEntry("index3").getDouble(0), pidConfig, maxThrottle);
 		((SDSMk4Module)frontLeft).setDebug(true);
 		
